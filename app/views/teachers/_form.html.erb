@@ -1,0 +1,38 @@
+<div class="jumbotron" align="center">
+	<%= form_for @teacher,  html:{id: :"new"} do |f| %>
+		<%= f.label :teacher_name %><br/>
+		<%= f.text_field :name%>
+		<div id="new1" style="border: 1px solid black">
+			<%= f.fields_for :students do |s| %>
+				<div class="field" style="float: left">
+					<%= s.label :student_name %><br />     
+					<%= s.text_field :name %><br/>
+					<%= s.label :roll_no%><br/>
+					<%= s.text_field :roll_no%>
+				</div>
+			<% end %>
+		</div>
+		<% @teacher.students.each do |student| %>
+	    <% end %>
+		<br/><br/><br/><br/><br/><br/><br/><br/><button id="add">+</button>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	<% end %>
+</div>
+<script type="text/javascript">
+	var n=0
+	$("#add").click(function(e) {
+	    $("#new1").append($("#new1 div.field:eq(0)").clone(true));
+	    $("#new1 div.field").eq(-1).find("input").val("");
+	    i = $("#new1 div.field").eq(-1).find("input");
+	    j = $(i).attr("name");
+	    j=j.replace(0, ++n);
+	    console.log(n);
+	    $(i).attr("name", j)
+	    e.preventDefault();
+	});
+	$(".btn").click(function(){
+
+	})
+</script>
+
+

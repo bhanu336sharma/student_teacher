@@ -1,0 +1,18 @@
+<%= form_for @teacher,  html:{id: :"new"} do |f| %>
+	<%= f.label :teacher_name %><br/>
+	<%= f.text_field :name%>
+	
+	<div id="new1">
+		<%= f.fields_for :students do |s| %>
+			<div class="field">
+			<select multiple>
+				<% @teacher.students.each do |student| %>
+          		<option><%= student.name %></option>
+        	<% end %>
+			</select>
+			</div>
+		<% end %>
+	</div>
+	<button id="add">+</button>
+	<button type="submit" class="btn btn-primary">Submit</button>
+<% end %>
